@@ -161,7 +161,8 @@
         const resetBtn = document.getElementById('reset-btn');
 
         // This is the URL for your Google Sheet Web App. Replace it with your actual URL.
-https://script.google.com/macros/s/AKfycby-_cfsoJTbcLDuM_J1RN0jAEjdWsDY6bfFiXhxmb1bTlAy8T4ABtC-oMP_lVCAVljW-Q/exec
+        const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycby-_cfsoJTbcLDuM_J1RN0jAEjdWsDY6bfFiXhxmb1bTlAy8T4ABtC-oMP_lVCAVljW-Q/exec';
+
         studyYearSelect.addEventListener('change', (event) => {
             const selectedYear = event.target.value;
             if (selectedYear === "שנה ג'" || selectedYear === "שנה ד'") {
@@ -212,7 +213,7 @@ https://script.google.com/macros/s/AKfycby-_cfsoJTbcLDuM_J1RN0jAEjdWsDY6bfFiXhxm
         });
 
         async function saveData(formData) {
-            if (!GOOGLE_SHEET_URL || GOOGLE_SHEET_URL === 'הדבק כאן את ה-URL של ה-Web App שלך') {
+            if (!GOOGLE_SHEET_URL || GOOGLE_SHEET_URL.includes('הדבק כאן')) {
                 console.warn('Google Sheet URL is not configured. Data will not be saved.');
                 return;
             }
@@ -274,4 +275,4 @@ https://script.google.com/macros/s/AKfycby-_cfsoJTbcLDuM_J1RN0jAEjdWsDY6bfFiXhxm
         });
     </script>
 </body>
-</ht
+</html>
