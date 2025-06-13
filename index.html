@@ -144,7 +144,7 @@
              <div class="bg-white rounded-xl shadow-lg p-6 md:p-8 text-center max-w-lg w-full" tabindex="-1">
                 <h2 id="thank-you-title" class="text-2xl md:text-3xl font-bold text-slate-800 mb-4">תודה רבה!</h2>
                 <p class="text-lg text-slate-600">המשוב שלך נשלח בהצלחה ועוזר לנו מאוד בתכנון הסיורים הבאים.</p>
-                <button id="reset-btn" class="btn btn-secondary mt-8">חזרה לשאלון</button>
+                <button id="close-btn" class="btn btn-secondary mt-8">סיום</button>
             </div>
         </div>
     </div>
@@ -160,7 +160,7 @@
         const specializationSelect = document.getElementById('specialization');
         
         const thankYouContainer = document.getElementById('thank-you-container');
-        const resetBtn = document.getElementById('reset-btn');
+        const closeBtn = document.getElementById('close-btn');
 
         // This is the URL for your Google Sheet Web App. Replace it with your actual URL.
         const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycby-_cfsoJTbcLDuM_J1RN0jAEjdWsDY6bfFiXhxmb1bTlAy8T4ABtC-oMP_lVCAVljW-Q/exec';
@@ -178,7 +178,7 @@
         });
 
         function setSectionRequired(section, isRequired) {
-            section.querySelectorAll('input[type="radio"], input[type="range"], select, textarea').forEach(input => {
+            section.querySelectorAll('input[type="radio"], select, textarea').forEach(input => {
                 if(input.name){
                     input.required = isRequired;
                 }
@@ -219,7 +219,6 @@
                 console.warn('Google Sheet URL is not configured. Data will not be saved.');
                 return;
             }
-             // Create a flat object from FormData
             const dataToSend = {};
             for (const [key, value] of formData.entries()) {
                 if (dataToSend[key]) {
@@ -231,7 +230,6 @@
                     dataToSend[key] = value;
                 }
             }
-             // Join array values for sheets
             for (const key in dataToSend) {
                 if (Array.isArray(dataToSend[key])) {
                     dataToSend[key] = dataToSend[key].join(', ');
@@ -257,23 +255,16 @@
             
             await saveData(formData);
 
+            form.classList.add('hidden');
+            document.querySelector('header').classList.add('hidden');
+
             thankYouContainer.classList.remove('hidden');
             thankYouContainer.querySelector('[role="dialog"]').focus();
         });
 
 
-        resetBtn.addEventListener('click', () => {
-            form.reset();
-            partA.classList.remove('hidden');
-            partB.classList.add('hidden');
-            partC.classList.add('hidden');
-            specializationBlock.classList.add('hidden');
-            setSectionRequired(partB, false);
-            setSectionRequired(partC, false);
-            specializationSelect.required = false;
+        closeBtn.addEventListener('click', () => {
             thankYouContainer.classList.add('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            studyYearSelect.focus();
         });
     </script>
 </body>
