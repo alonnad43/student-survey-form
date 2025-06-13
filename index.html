@@ -22,6 +22,7 @@
         .btn-primary:hover { background-color: #1d4ed8; }
         .btn-secondary { background-color: #64748b; color: white; }
         .btn-secondary:hover { background-color: #475569; }
+        .rating-group input:checked + div { background-color: #2563eb; color: white; border-color: #1d4ed8; }
         .loader { width: 48px; height: 48px; border: 5px solid rgba(255,255,255,0.3); border-bottom-color: #ffffff; border-radius: 50%; display: inline-block; box-sizing: border-box; animation: rotation 1s linear infinite; }
         @keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
@@ -83,11 +84,44 @@
             <div id="part-b" class="form-section hidden">
                  <h2 class="section-title">חלק ב': משוב למשתתפי הסיור</h2>
                  <fieldset class="mb-4"><legend class="label-title">1. לאיזה סיור התפצלת? <span class="required-star">*</span></legend><div class="options space-y-2"><label for="comp_hp" class="font-normal flex items-center"><input type="radio" id="comp_hp" name="attended_company" value="HP" class="ml-2"> HP רחובות</label><label for="comp_bsem" class="font-normal flex items-center"><input type="radio" id="comp_bsem" name="attended_company" value="מנועי בית שמש" class="ml-2"> מנועי בית שמש</label><label for="comp_medex" class="font-normal flex items-center"><input type="radio" id="comp_medex" name="attended_company" value="Medex" class="ml-2"> Medex</label><label for="comp_elop" class="font-normal flex items-center"><input type="radio" id="comp_elop" name="attended_company" value="אל אופ" class="ml-2"> אל אופ</label></div></fieldset>
-                 <div class="mb-4"><label for="b_recommend" class="label-title">2. בסולם 1-10, עד כמה היית ממליץ/ה לחברים להצטרף? <span class="required-star">*</span></label><input type="range" id="b_recommend" min="1" max="10" value="5" name="b_recommend" class="w-full"></div>
-                 <div class="mb-4"><label for="b_contribution" class="label-title">3. עד כמה הסיור תרם לחיבור בין תאוריה למעשה? <span class="required-star">*</span></label><input type="range" id="b_contribution" min="1" max="5" value="3" name="b_contribution" class="w-full"></div>
-                 <div class="mb-4"><label for="b_motivation_boost" class="label-title">4. באיזו מידה הסיור חיזק את המוטיבציה ללימודים? <span class="required-star">*</span></label><input type="range" id="b_motivation_boost" min="1" max="5" value="3" name="b_motivation_boost" class="w-full"></div>
-                 <div class="mb-4"><label for="b_career_contribution" class="label-title">5. עד כמה הסיור תרם להכוונת קריירה? <span class="required-star">*</span></label><input type="range" id="b_career_contribution" min="1" max="5" value="3" name="b_career_contribution" class="w-full"></div>
-                 <div class="mb-4"><label for="b_should_be_part" class="label-title">6. עד כמה סיורים צריכים להיות חלק קבוע מהתואר? <span class="required-star">*</span></label><input type="range" id="b_should_be_part" min="1" max="5" value="3" name="b_should_be_part" class="w-full"></div>
+                
+                 <fieldset class="mb-4">
+                    <legend class="label-title">2. בסולם 1-10, עד כמה היית ממליץ/ה לחברים להצטרף? <span class="required-star">*</span></legend>
+                    <div class="flex flex-wrap justify-center gap-2 rating-group">
+                        <script>for(let i=1; i<=10; i++) document.write(`<label class="w-10"><input type="radio" name="b_recommend" value="${i}" class="sr-only"><div class="w-full text-center p-2 border rounded-md cursor-pointer hover:bg-gray-100">${i}</div></label>`);</script>
+                    </div>
+                 </fieldset>
+
+                 <fieldset class="mb-4">
+                    <legend class="label-title">3. עד כמה הסיור תרם לחיבור בין תאוריה למעשה? <span class="required-star">*</span></legend>
+                    <div class="flex justify-between items-center mt-2 space-x-2 space-x-reverse rating-group">
+                        <script>for(let i=1; i<=5; i++) document.write(`<label class="flex-1"><input type="radio" name="b_contribution" value="${i}" class="sr-only"><div class="w-full text-center p-2 border rounded-md cursor-pointer hover:bg-gray-100">${i}</div></label>`);</script>
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-500 mt-1 px-1"><span>בכלל לא</span><span>במידה רבה מאוד</span></div>
+                 </fieldset>
+
+                 <fieldset class="mb-4">
+                    <legend class="label-title">4. באיזו מידה הסיור חיזק את המוטיבציה ללימודים? <span class="required-star">*</span></legend>
+                     <div class="flex justify-between items-center mt-2 space-x-2 space-x-reverse rating-group">
+                        <script>for(let i=1; i<=5; i++) document.write(`<label class="flex-1"><input type="radio" name="b_motivation_boost" value="${i}" class="sr-only"><div class="w-full text-center p-2 border rounded-md cursor-pointer hover:bg-gray-100">${i}</div></label>`);</script>
+                    </div>
+                 </fieldset>
+
+                 <fieldset class="mb-4">
+                    <legend class="label-title">5. עד כמה הסיור תרם להכוונת קריירה? <span class="required-star">*</span></legend>
+                    <div class="flex justify-between items-center mt-2 space-x-2 space-x-reverse rating-group">
+                        <script>for(let i=1; i<=5; i++) document.write(`<label class="flex-1"><input type="radio" name="b_career_contribution" value="${i}" class="sr-only"><div class="w-full text-center p-2 border rounded-md cursor-pointer hover:bg-gray-100">${i}</div></label>`);</script>
+                    </div>
+                 </fieldset>
+
+                 <fieldset class="mb-4">
+                    <legend class="label-title">6. עד כמה סיורים צריכים להיות חלק קבוע מהתואר? <span class="required-star">*</span></legend>
+                    <div class="flex justify-between items-center mt-2 space-x-2 space-x-reverse rating-group">
+                        <script>for(let i=1; i<=5; i++) document.write(`<label class="flex-1"><input type="radio" name="b_should_be_part" value="${i}" class="sr-only"><div class="w-full text-center p-2 border rounded-md cursor-pointer hover:bg-gray-100">${i}</div></label>`);</script>
+                    </div>
+                     <div class="flex justify-between text-xs text-gray-500 mt-1 px-1"><span>מיותר</span><span>הכרחי</span></div>
+                 </fieldset>
+
                  <fieldset class="mb-4"><legend class="label-title">7. תדירות מומלצת לסיורים? <span class="required-star">*</span></legend><div class="options space-y-2"><label for="freq_sem" class="font-normal flex items-center"><input type="radio" id="freq_sem" name="b_frequency" value="סמסטר" class="ml-2"> פעם בסמסטר</label><label for="freq_year" class="font-normal flex items-center"><input type="radio" id="freq_year" name="b_frequency" value="שנה" class="ml-2"> פעם בשנה</label></div></fieldset>
                  <div class="mb-4"><label for="b_takeaway">8. מה הדבר המשמעותי ביותר שלמדת?</label><textarea id="b_takeaway" name="b_takeaway" rows="3" class="form-textarea"></textarea></div>
                  <fieldset class="mb-4"><legend class="label-title">9. תחומי עניין לסיורים הבאים:</legend><div class="options grid grid-cols-1 md:grid-cols-2 gap-2"><label for="b_int_semi" class="font-normal flex items-center"><input type="checkbox" id="b_int_semi" name="b_interests" value="מוליכים למחצה" class="ml-2"> מוליכים למחצה</label><label for="b_int_aero" class="font-normal flex items-center"><input type="checkbox" id="b_int_aero" name="b_interests" value="תעופה וביטחון" class="ml-2"> תעופה וביטחון</label><label for="b_int_med" class="font-normal flex items-center"><input type="checkbox" id="b_int_med" name="b_interests" value="מכשור רפואי" class="ml-2"> מכשור רפואי</label><label for="b_int_clean" class="font-normal flex items-center"><input type="checkbox" id="b_int_clean" name="b_interests" value="קלינטק" class="ml-2"> אנרגיה וקלינטק</label></div></fieldset>
@@ -100,183 +134,4 @@
                 <h2 class="section-title">חלק ג': משוב למי שלא השתתף/ה</h2>
                 <fieldset class="mb-4"><legend class="label-title">1. סיבות לאי-הגעה:</legend><div class="options space-y-2"><label for="c_reason_interest" class="font-normal flex items-center"><input type="checkbox" id="c_reason_interest" name="c_reasons" value="יעדים לא עניינו" class="ml-2"> יעדי הסיור לא עניינו אותי</label><label for="c_reason_conflict" class="font-normal flex items-center"><input type="checkbox" id="c_reason_conflict" name="c_reasons" value="חפיפה עם לימודים" class="ml-2"> חפיפה עם הרצאות</label><label for="c_reason_workload" class="font-normal flex items-center"><input type="checkbox" id="c_reason_workload" name="c_reasons" value="עומס לימודים" class="ml-2"> עומס לימודים</label></div></fieldset>
                 <div class="mb-4"><label for="c_motivation">2. מה היה גורם לך כן להצטרף?</label><textarea id="c_motivation" name="c_motivation" rows="3" class="form-textarea"></textarea></div>
-                <fieldset class="mb-4"><legend class="label-title">3. תחומי עניין לסיורים הבאים:</legend><div class="options grid grid-cols-1 md:grid-cols-2 gap-2"><label for="c_int_semi" class="font-normal flex items-center"><input type="checkbox" id="c_int_semi" name="c_interests" value="מוליכים למחצה" class="ml-2"> מוליכים למחצה</label><label for="c_int_aero" class="font-normal flex items-center"><input type="checkbox" id="c_int_aero" name="c_interests" value="תעופה וביטחון" class="ml-2"> תעופה וביטחון</label><label for="c_int_med" class="font-normal flex items-center"><input type="checkbox" id="c_int_med" name="c_interests" value="מכשור רפואי" class="ml-2"> מכשור רפואי</label><label for="c_int_clean" class="font-normal flex items-center"><input type="checkbox" id="c_int_clean" name="c_interests" value="קלינטק" class="ml-2"> אנרגיה וקלינטק</label></div></fieldset>
-                <button type="submit" class="btn btn-primary mt-6">שלח וקבל תובנות AI</button>
-            </div>
-        </form>
-        
-        <!-- Loading and Result Modals -->
-        <div id="loading-container" class="hidden fixed inset-0 bg-slate-800 bg-opacity-75 flex flex-col items-center justify-center text-white z-50">
-            <div class="loader"></div>
-            <p class="mt-4 text-lg">מעבדים את תשובותיך ומייצרים תובנות אישיות...</p>
-        </div>
-        <div id="results-container" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50 p-4" role="dialog" aria-modal="true" aria-labelledby="result-title">
-             <div class="bg-white rounded-xl shadow-lg p-6 md:p-8 text-center max-w-2xl w-full" tabindex="-1">
-                <h2 id="result-title" class="text-2xl md:text-3xl font-bold text-slate-800 mb-6"></h2>
-                <div id="result-content" class="text-right space-y-4 max-h-[60vh] overflow-y-auto pr-2" aria-live="polite"></div>
-                <button id="reset-btn" class="btn btn-secondary mt-8">סגור וחזור לשאלון</button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const form = document.getElementById('surveyForm');
-        const partA = document.getElementById('part-a');
-        const partB = document.getElementById('part-b');
-        const partC = document.getElementById('part-c');
-        const continueBtn = document.getElementById('continue-btn');
-        const studyYearSelect = document.getElementById('study_year');
-        const specializationBlock = document.getElementById('specialization-block');
-        const specializationSelect = document.getElementById('specialization');
-        
-        const loadingContainer = document.getElementById('loading-container');
-        const resultsContainer = document.getElementById('results-container');
-        const resultDialog = resultsContainer.querySelector('[role="dialog"]');
-        const resetBtn = document.getElementById('reset-btn');
-
-        studyYearSelect.addEventListener('change', (event) => {
-            const selectedYear = event.target.value;
-            if (selectedYear === "שנה ג'" || selectedYear === "שנה ד'") {
-                specializationBlock.classList.remove('hidden');
-                specializationSelect.required = true;
-            } else {
-                specializationBlock.classList.add('hidden');
-                specializationSelect.required = false;
-                specializationSelect.value = ""; // Reset value if hidden
-            }
-        });
-
-        function setSectionRequired(section, isRequired) {
-            section.querySelectorAll('input, select, textarea').forEach(input => {
-                if (input.type === 'checkbox' || input.type === 'button' || input.type === 'submit') return;
-                const parentDiv = input.closest('.mb-4, fieldset');
-                if (!parentDiv || !parentDiv.classList.contains('hidden')) {
-                     input.required = isRequired;
-                }
-            });
-        }
-        
-        continueBtn.addEventListener('click', () => {
-            const partAInputs = Array.from(partA.querySelectorAll('input[required], select[required]'));
-            let allValid = true;
-            for (const input of partAInputs) {
-                if (!input.reportValidity()) {
-                    allValid = false;
-                    break;
-                }
-            }
-
-            if (allValid) {
-                partA.classList.add('hidden');
-                const attended = form.elements['attended_tour'].value;
-                if (attended === 'yes') {
-                    partB.classList.remove('hidden');
-                    setSectionRequired(partB, true);
-                } else if (attended === 'no') {
-                    partC.classList.remove('hidden');
-                    setSectionRequired(partC, true);
-                }
-            }
-        });
-
-        form.addEventListener('submit', async (event) => {
-            event.preventDefault();
-            loadingContainer.classList.remove('hidden');
-
-            const formData = new FormData(form);
-            const attended = formData.get('attended_tour') === 'yes';
-            let prompt, schema;
-
-            if (attended) {
-                prompt = `סטודנט/ית להנדסת חומרים השתתף/ה בסיור. נתוניו/ה:
-                - חברה: ${formData.get('attended_company')}
-                - המלצה (1-10): ${formData.get('b_recommend')}
-                - תרומה לתאוריה-מעשה (1-5): ${formData.get('b_contribution')}
-                - חיזוק מוטיבציה (1-5): ${formData.get('b_motivation_boost')}
-                - תרומה לקריירה (1-5): ${formData.get('b_career_contribution')}
-                - תובנה מרכזית: ${formData.get('b_takeaway')}
-                - תחומי עניין עתידיים: ${Array.from(formData.getAll('b_interests')).join(', ')}
-                בהתבסס על מידע זה, צור תגובת JSON עם שני שדות:
-                1. "title": הודעת תודה קצרה ואישית.
-                2. "suggestions": מערך של 2-3 המלצות קריירה, עם "title" ו-"description" לכל אחת.`;
-                schema = { type: "OBJECT", properties: { "title": { "type": "STRING" }, "suggestions": { "type": "ARRAY", "items": { "type": "OBJECT", "properties": { "title": { "type": "STRING" }, "description": { "type": "STRING" } }, "required": ["title", "description"] } } }, "required": ["title", "suggestions"] };
-
-            } else {
-                prompt = `סטודנט/ית להנדסת חומרים לא השתתף/ה בסיור. נתוניו/ה:
-                - סיבות לאי-הגעה: ${Array.from(formData.getAll('c_reasons')).join(', ')}
-                - מה היה גורם להגעה: ${formData.get('c_motivation')}
-                - תחומי עניין עתידיים: ${Array.from(formData.getAll('c_interests')).join(', ')}
-                בהתבסס על מידע זה, צור תגובת JSON עם שני שדות:
-                1. "title": הודעת תודה על המשוב החשוב.
-                2. "suggestions": מערך של 2-3 הצעות קונקרטיות לארגון הסיור הבא. כל הצעה עם "title" ו-"description".`;
-                schema = { type: "OBJECT", properties: { "title": { "type": "STRING" }, "suggestions": { "type": "ARRAY", "items": { "type": "OBJECT", "properties": { "title": { "type": "STRING" }, "description": { "type": "STRING" } }, "required": ["title", "description"] } } }, "required": ["title", "suggestions"] };
-            }
-
-            try {
-                const resultJson = await callGemini(prompt, schema);
-                displayResults(resultJson);
-            } catch (error) {
-                console.error('Error calling Gemini API:', error);
-                displayError(attended);
-            } finally {
-                loadingContainer.classList.add('hidden');
-            }
-        });
-
-        async function callGemini(prompt, schema) {
-            const payload = {
-                contents: [{ role: "user", parts: [{ text: prompt }] }],
-                generationConfig: {
-                    responseMimeType: "application/json",
-                    responseSchema: schema
-                }
-            };
-            const apiKey = "";
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-            const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-            if (!response.ok) throw new Error(`API call failed with status: ${response.status}`);
-            const result = await response.json();
-            if (result.candidates?.[0]?.content?.parts?.[0]?.text) {
-                return JSON.parse(result.candidates[0].content.parts[0].text);
-            } else {
-                throw new Error("Invalid response structure from API.");
-            }
-        }
-
-        function displayResults(data) {
-            document.getElementById('result-title').textContent = data.title;
-            const contentWrapper = document.getElementById('result-content');
-            contentWrapper.innerHTML = '';
-            data.suggestions.forEach(suggestion => {
-                const card = document.createElement('div');
-                card.className = 'bg-slate-50 p-4 rounded-lg border border-slate-200';
-                card.innerHTML = `<h4 class="text-lg font-bold text-blue-600">${suggestion.title}</h4><p class="text-slate-600 mt-1">${suggestion.description}</p>`;
-                contentWrapper.appendChild(card);
-            });
-            resultsContainer.classList.remove('hidden');
-            resultDialog.focus();
-        }
-
-        function displayError(attended) {
-            const errorTitle = "אירעה שגיאה בתקשורת";
-            const errorDescription = "לא הצלחנו לייצר תובנות אישיות כרגע, אך המשוב החשוב שלך נשמר בהצלחה. תודה רבה!";
-            const data = { title: errorTitle, suggestions: [{title: "הודעת מערכת", description: errorDescription}] };
-            displayResults(data);
-        }
-
-        resetBtn.addEventListener('click', () => {
-            form.reset();
-            partA.classList.remove('hidden');
-            partB.classList.add('hidden');
-            partC.classList.add('hidden');
-            specializationBlock.classList.add('hidden');
-            setSectionRequired(partB, false);
-            setSectionRequired(partC, false);
-            specializationSelect.required = false;
-            resultsContainer.classList.add('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            studyYearSelect.focus();
-        });
-    </script>
-</body>
-</html>
+                <fieldset class="mb-4"><legend class="label-title">3. תחומי עניין לסיורים הבאים:</legend><div class="options grid grid-cols-1 md:grid-cols-2 gap-2"><label for="c_int_semi" class="font-normal flex items-center"><input type="checkbox" id="c_int_semi" name="c_interests" value="מולי
